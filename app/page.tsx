@@ -11,11 +11,11 @@ import { Slider } from "@/components/ui/slider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function Generator() {
-  const [count, setCount] = useState<number>(10)
-  const [digitCount, setDigitCount] = useState<number>(10)
+  const [count, setCount] = useState<number>(1)
+  const [digitCount, setDigitCount] = useState<number>(9)
   const [numbers, setNumbers] = useState<string[]>([])
   const [isGenerating, setIsGenerating] = useState<boolean>(false)
-  const [uuidCount, setUuidCount] = useState<number>(10)
+  const [uuidCount, setUuidCount] = useState<number>(3)
   const [uuids, setUuids] = useState<string[]>([])
   const [isGeneratingUuid, setIsGeneratingUuid] = useState<boolean>(false)
 
@@ -83,7 +83,7 @@ export default function Generator() {
       <div className="max-w-6xl mx-auto">
         <header className="mb-6 text-center">
           <h1 className="text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">
-            ID Generator
+            File Number & UUID Generator
           </h1>
           <p className="text-gray-400 max-w-md mx-auto">Generate unique file numbers and UUIDs</p>
         </header>
@@ -111,11 +111,8 @@ export default function Generator() {
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
                         <Label htmlFor="digitCount" className="text-sm font-medium text-gray-300">
-                          Digits Length
+                          Digit Length
                         </Label>
-                        <Badge variant="outline" className="h-6 px-2 font-mono text-purple-400 border-purple-400/30">
-                          {digitCount}
-                        </Badge>
                       </div>
                       <div className="flex gap-4 items-center">
                         <Slider
@@ -130,7 +127,7 @@ export default function Generator() {
                         <Input
                           type="number"
                           value={digitCount}
-                          onChange={(e) => setDigitCount(Number.parseInt(e.target.value) || 10)}
+                          onChange={(e) => setDigitCount(Number.parseInt(e.target.value) || 9)}
                           className="w-20 bg-gray-700 border-gray-600 text-gray-200"
                           min={3}
                           max={20}
@@ -141,11 +138,8 @@ export default function Generator() {
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
                         <Label htmlFor="count" className="text-sm font-medium text-gray-300">
-                          Quantity
+                          Quantity to generate
                         </Label>
-                        <Badge variant="outline" className="h-6 px-2 font-mono text-purple-400 border-purple-400/30">
-                          {count}
-                        </Badge>
                       </div>
                       <div className="flex gap-4 items-center">
                         <Slider
@@ -259,9 +253,6 @@ export default function Generator() {
                         <Label htmlFor="uuidCount" className="text-sm font-medium text-gray-300">
                           Quantity to generate
                         </Label>
-                        <Badge variant="outline" className="h-6 px-2 font-mono text-purple-400 border-purple-400/30">
-                          {uuidCount}
-                        </Badge>
                       </div>
                       <div className="flex gap-4 items-center">
                         <Slider
@@ -276,7 +267,7 @@ export default function Generator() {
                         <Input
                           type="number"
                           value={uuidCount}
-                          onChange={(e) => setUuidCount(Number.parseInt(e.target.value) || 1)}
+                          onChange={(e) => setUuidCount(Number.parseInt(e.target.value) || 3)}
                           className="w-20 bg-gray-700 border-gray-600 text-gray-200"
                           min={1}
                           max={1000}
@@ -286,13 +277,9 @@ export default function Generator() {
 
                     <div className="pt-4">
                       <div className="rounded-md bg-gray-900 p-4 border border-gray-700">
-                        <h3 className="text-sm font-medium text-gray-300 mb-2">About UUID v4</h3>
+                        <h3 className="text-sm font-medium text-gray-300 mb-2">About version 4 UUID</h3>
                         <p className="text-xs text-gray-400">
-                          Version 4 UUIDs are randomly generated and have the form
-                          <span className="text-purple-400 font-mono block mt-1">
-                            xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx
-                          </span>
-                          where x is any hexadecimal digit and y is one of 8, 9, A, or B.
+                          A Version 4 UUID is a universally unique identifier that is generated using random numbers. The Version 4 UUIDs produced by this site were generated using a secure random number generator.
                         </p>
                       </div>
                     </div>
