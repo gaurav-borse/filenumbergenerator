@@ -11,32 +11,22 @@ import { Slider } from "@/components/ui/slider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function Generator() {
-  // File Number Generator State
   const [count, setCount] = useState<number>(10)
   const [digitCount, setDigitCount] = useState<number>(10)
   const [numbers, setNumbers] = useState<string[]>([])
   const [isGenerating, setIsGenerating] = useState<boolean>(false)
-
-  // UUID Generator State
   const [uuidCount, setUuidCount] = useState<number>(10)
   const [uuids, setUuids] = useState<string[]>([])
   const [isGeneratingUuid, setIsGeneratingUuid] = useState<boolean>(false)
 
-  // File Number Generator Functions
   const generateRandomNumbers = () => {
     setIsGenerating(true)
 
-    // Create a Set to ensure uniqueness
     const uniqueNumbers = new Set<string>()
 
     while (uniqueNumbers.size < count) {
-      // Randomly decide if the number starts with "00" or "0"
       const prefix = Math.random() < 0.5 ? "00" : "0"
-
-      // Calculate remaining digits based on total digit count
       const remainingDigitCount = digitCount - prefix.length
-
-      // Generate the remaining digits
       let remainingDigits: string
       const maxNum = Math.pow(10, remainingDigitCount) - 1
       remainingDigits = Math.floor(Math.random() * maxNum)
@@ -51,7 +41,6 @@ export default function Generator() {
     setIsGenerating(false)
   }
 
-  // UUID Generator Functions
   const generateUUIDs = () => {
     setIsGeneratingUuid(true)
 
@@ -65,7 +54,6 @@ export default function Generator() {
     setIsGeneratingUuid(false)
   }
 
-  // Generate a Version 4 UUID
   const generateUUID = (): string => {
     return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
       const r = (Math.random() * 16) | 0
@@ -74,7 +62,6 @@ export default function Generator() {
     })
   }
 
-  // Common Functions
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text)
   }
@@ -102,7 +89,7 @@ export default function Generator() {
         </header>
 
         <Tabs defaultValue="file-number" className="w-full mb-6">
-          <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto">
+          <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-6">
             <TabsTrigger value="file-number" className="data-[state=active]:bg-purple-900/50">
               <FileDigit className="h-4 w-4 mr-2" />
               File Numbers
@@ -113,21 +100,18 @@ export default function Generator() {
             </TabsTrigger>
           </TabsList>
 
-          {/* File Number Generator Tab */}
           <TabsContent value="file-number">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-              {/* Generator Controls */}
               <div className="lg:col-span-4">
                 <Card className="shadow-xl border-0 bg-gray-800/80 backdrop-blur-sm h-full border-gray-700">
                   <CardHeader>
                     <CardTitle className="text-gray-200">File Number Generator</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-6">
-                    {/* Digit Count Slider */}
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
                         <Label htmlFor="digitCount" className="text-sm font-medium text-gray-300">
-                          Number of digits
+                          Digits Length
                         </Label>
                         <Badge variant="outline" className="h-6 px-2 font-mono text-purple-400 border-purple-400/30">
                           {digitCount}
@@ -154,11 +138,10 @@ export default function Generator() {
                       </div>
                     </div>
 
-                    {/* Quantity Slider */}
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
                         <Label htmlFor="count" className="text-sm font-medium text-gray-300">
-                          Quantity to generate
+                          Quantity
                         </Label>
                         <Badge variant="outline" className="h-6 px-2 font-mono text-purple-400 border-purple-400/30">
                           {count}
@@ -204,7 +187,6 @@ export default function Generator() {
                 </Card>
               </div>
 
-              {/* Results Section */}
               <div className="lg:col-span-8">
                 <Card className="shadow-xl border-0 bg-gray-800/80 backdrop-blur-sm h-full border-gray-700">
                   <CardHeader className="flex flex-row items-center justify-between">
@@ -264,17 +246,14 @@ export default function Generator() {
             </div>
           </TabsContent>
 
-          {/* UUID Generator Tab */}
           <TabsContent value="uuid">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-              {/* Generator Controls */}
               <div className="lg:col-span-4">
                 <Card className="shadow-xl border-0 bg-gray-800/80 backdrop-blur-sm h-full border-gray-700">
                   <CardHeader>
                     <CardTitle className="text-gray-200">UUID v4 Generator</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-6">
-                    {/* Quantity Slider */}
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
                         <Label htmlFor="uuidCount" className="text-sm font-medium text-gray-300">
@@ -337,7 +316,6 @@ export default function Generator() {
                 </Card>
               </div>
 
-              {/* Results Section */}
               <div className="lg:col-span-8">
                 <Card className="shadow-xl border-0 bg-gray-800/80 backdrop-blur-sm h-full border-gray-700">
                   <CardHeader className="flex flex-row items-center justify-between">
