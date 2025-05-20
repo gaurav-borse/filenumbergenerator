@@ -12,22 +12,22 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function Generator() {
   // File Number Generator State
-  const [count, setCount] = useState<number>(10)
-  const [digitCount, setDigitCount] = useState<number>(10)
-  const [numbers, setNumbers] = useState<string[]>([])
-  const [isGenerating, setIsGenerating] = useState<boolean>(false)
+  const [count, setCount] = useState(10)
+  const [digitCount, setDigitCount] = useState(10)
+  const [numbers, setNumbers] = useState([])
+  const [isGenerating, setIsGenerating] = useState(false)
 
   // UUID Generator State
-  const [uuidCount, setUuidCount] = useState<number>(10)
-  const [uuids, setUuids] = useState<string[]>([])
-  const [isGeneratingUuid, setIsGeneratingUuid] = useState<boolean>(false)
+  const [uuidCount, setUuidCount] = useState(10)
+  const [uuids, setUuids] = useState([])
+  const [isGeneratingUuid, setIsGeneratingUuid] = useState(false)
 
   // File Number Generator Functions
   const generateRandomNumbers = () => {
     setIsGenerating(true)
 
     // Create a Set to ensure uniqueness
-    const uniqueNumbers = new Set<string>()
+    const uniqueNumbers = new Set()
 
     while (uniqueNumbers.size < count) {
       // Randomly decide if the number starts with "00" or "0"
@@ -37,7 +37,7 @@ export default function Generator() {
       const remainingDigitCount = digitCount - prefix.length
 
       // Generate the remaining digits
-      let remainingDigits: string
+      let remainingDigits
       const maxNum = Math.pow(10, remainingDigitCount) - 1
       remainingDigits = Math.floor(Math.random() * maxNum)
         .toString()
@@ -55,7 +55,7 @@ export default function Generator() {
   const generateUUIDs = () => {
     setIsGeneratingUuid(true)
 
-    const generatedUuids: string[] = []
+    const generatedUuids = []
 
     for (let i = 0; i < uuidCount; i++) {
       generatedUuids.push(generateUUID())
@@ -66,7 +66,7 @@ export default function Generator() {
   }
 
   // Generate a Version 4 UUID
-  const generateUUID = (): string => {
+  const generateUUID = () => {
     return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
       const r = (Math.random() * 16) | 0
       const v = c === "x" ? r : (r & 0x3) | 0x8
@@ -75,11 +75,11 @@ export default function Generator() {
   }
 
   // Common Functions
-  const copyToClipboard = (text: string) => {
+  const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text)
   }
 
-  const downloadAsFile = (content: string, filename: string) => {
+  const downloadAsFile = (content, filename) => {
     const blob = new Blob([content], { type: "text/plain" })
     const url = URL.createObjectURL(blob)
     const a = document.createElement("a")
@@ -207,7 +207,7 @@ export default function Generator() {
               {/* Results Section */}
               <div className="lg:col-span-8">
                 <Card className="shadow-xl border-0 bg-gray-800/80 backdrop-blur-sm h-full border-gray-700">
-                  <CardHeader className="flex flex-row items-center justify-between">
+                  <CardHeader>
                     <CardTitle className="text-gray-200">Generated File Numbers</CardTitle>
                     {numbers.length > 0 && (
                       <div className="flex gap-2">
@@ -340,7 +340,7 @@ export default function Generator() {
               {/* Results Section */}
               <div className="lg:col-span-8">
                 <Card className="shadow-xl border-0 bg-gray-800/80 backdrop-blur-sm h-full border-gray-700">
-                  <CardHeader className="flex flex-row items-center justify-between">
+                  <CardHeader>
                     <CardTitle className="text-gray-200">Generated UUIDs</CardTitle>
                     {uuids.length > 0 && (
                       <div className="flex gap-2">
