@@ -2,15 +2,15 @@
 
 import { useState } from "react"
 import { Download, Copy, RefreshCw, FileDigit, Key } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Slider } from "@/components/ui/slider"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "./components/ui/button"
+import { Input } from "./components/ui/input"
+import { Label } from "./components/ui/label"
+import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card"
+import { Badge } from "./components/ui/badge"
+import { Slider } from "./components/ui/slider"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs"
 
-export default function Generator() {
+function App() {
   // File Number Generator State
   const [count, setCount] = useState<number>(10)
   const [digitCount, setDigitCount] = useState<number>(10)
@@ -403,3 +403,5 @@ export default function Generator() {
     </div>
   )
 }
+
+export default App

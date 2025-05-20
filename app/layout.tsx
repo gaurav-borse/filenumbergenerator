@@ -5,8 +5,8 @@ import { Inter } from "next/font/google"
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 
 export const metadata = {
-  title: "File Number Generator",
-  description: "Generate unique file numbers with customizable length",
+  title: "ID Generator | File Numbers & UUIDs",
+  description: "Generate unique file numbers and UUIDs with customizable options",
     generator: 'v0.dev'
 }
 
