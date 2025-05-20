@@ -89,7 +89,7 @@ export default function Generator() {
         </header>
 
         <Tabs defaultValue="file-number" className="w-full mb-6">
-          <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-8">
+          <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-10">
             <TabsTrigger value="file-number" className="data-[state=active]:bg-purple-900/50">
               <FileDigit className="h-4 w-4 mr-2" />
               File Numbers
